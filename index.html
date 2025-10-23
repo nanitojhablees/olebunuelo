@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gana tu Bono! - Ole Buñuelo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px 30px;
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #FF6B35;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .welcome {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .discount-badge {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 32px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(255,107,53,0.4);
+        }
+
+        .conditions {
+            background: #FFF8E1;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #FFA500;
+        }
+
+        .conditions p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .instructions {
+            color: #333;
+            font-size: 16px;
+            margin: 25px 0;
+            line-height: 1.8;
+        }
+
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .instagram {
+            background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
+            color: white;
+        }
+
+        .facebook {
+            background: #1877F2;
+            color: white;
+        }
+
+        .icon {
+            font-size: 24px;
+        }
+
+        .confirm-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(76,175,80,0.4);
+        }
+
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(76,175,80,0.5);
+        }
+
+        .confirm-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            background: #E8F5E9;
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .success-message h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #FF6B35;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🍩</div>
+        <h1>Ole Buñuelo</h1>
+        <p class="welcome" id="welcome-msg">¡Hola! Gana tu bono especial</p>
+        
+        <div class="discount-badge">15% OFF</div>
+        
+        <div class="conditions">
+            <p><strong>📋 Condiciones:</strong></p>
+            <p>✓ Válido en compras igual o superiores a $10,000</p>
+            <p>✓ Para tu próxima compra</p>
+            <p>✓ Vence el 5 de noviembre de 2025</p>
+        </div>
+
+        <div class="instructions">
+            <strong>🎁 Para obtener tu bono:</strong><br>
+            1️⃣ Síguenos en nuestras redes sociales<br>
+            2️⃣ Haz clic en "Activar mi bono"<br>
+            3️⃣ Recibirás tu código por WhatsApp
+        </div>
+
+        <div class="social-buttons">
+            <a href="https://instagram.com" target="_blank" class="social-btn instagram" id="instagram-btn">
+                <span class="icon">📷</span>
+                <span>Seguir en Instagram</span>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="social-btn facebook" id="facebook-btn">
+                <span class="icon">👍</span>
+                <span>Seguir en Facebook</span>
+            </a>
+        </div>
+
+        <button class="confirm-btn" id="confirm-btn" onclick="confirmFollow()">
+            ✨ ¡Ya seguí las redes, activar mi bono!
+        </button>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="success-message" id="success-msg">
+            <h3>🎉 ¡Bono Activado!</h3>
+            <p>Tu código de descuento será enviado a tu WhatsApp en las próximas horas.</p>
+            <p><strong>¡Gracias por seguirnos! 🍩</strong></p>
+        </div>
+
+        <div class="footer">
+            Ole Buñuelo - Los mejores buñuelos artesanales
+        </div>
+    </div>
+
+    <script>
+        // Obtener parámetros de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const clientId = urlParams.get('id');
+        const clientName = urlParams.get('nombre');
+
+        // Personalizar saludo si hay nombre
+        if (clientName) {
+            document.getElementById('welcome-msg').textContent = `¡Hola ${decodeURIComponent(clientName)}! Gana tu bono especial`;
+        }
+
+        // IMPORTANTE: Reemplaza esta URL con tu webhook de n8n
+        const N8N_WEBHOOK_URL = 'https://n8n.digitalclick.lat/webhook/bono-confirmado';
+
+        async function confirmFollow() {
+            const btn = document.getElementById('confirm-btn');
+            const loading = document.getElementById('loading');
+            const successMsg = document.getElementById('success-msg');
+
+            // Deshabilitar botón
+            btn.disabled = true;
+            loading.style.display = 'block';
+
+            try {
+                // Enviar confirmación a n8n
+                const response = await fetch(N8N_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        clientId: clientId,
+                        clientName: clientName,
+                        timestamp: new Date().toISOString(),
+                        action: 'bono_confirmado'
+                    })
+                });
+
+                if (response.ok) {
+                    // Mostrar mensaje de éxito
+                    loading.style.display = 'none';
+                    successMsg.classList.add('show');
+                    btn.style.display = 'none';
+                } else {
+                    throw new Error('Error en la confirmación');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error. Por favor intenta de nuevo o contáctanos por WhatsApp.');
+                btn.disabled = false;
+                loading.style.display = 'none';
+            }
+        }
+
+        // Tracking de clicks en redes sociales (opcional)
+        document.getElementById('instagram-btn').addEventListener('click', function() {
+            console.log('Click en Instagram');
+            // Aquí puedes enviar un evento a n8n si quieres trackear
+        });
+
+        document.getElementById('facebook-btn').addEventListener('click', function() {
+            console.log('Click en Facebook');
+            // Aquí puedes enviar un evento a n8n si quieres trackear
+        });
+    </script>
+</body>
+</html>
