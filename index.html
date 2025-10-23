@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Gana tu Bono! - Ole Buñuelo</title>
+    <title>¡Gana 20% OFF! - Ole Buñuelo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,93 +15,258 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #FFB75E 0%, #ED8F03 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animación de burbujas de fondo */
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .bubble:nth-child(1) { width: 80px; height: 80px; left: 10%; bottom: -80px; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 60px; height: 60px; left: 30%; bottom: -60px; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 100px; height: 100px; left: 50%; bottom: -100px; animation-delay: 4s; }
+        .bubble:nth-child(4) { width: 70px; height: 70px; left: 70%; bottom: -70px; animation-delay: 6s; }
+        .bubble:nth-child(5) { width: 90px; height: 90px; left: 90%; bottom: -90px; animation-delay: 8s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
         .container {
             background: white;
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 500px;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+            max-width: 480px;
             width: 100%;
-            padding: 40px 30px;
+            padding: 0;
             text-align: center;
-            animation: slideIn 0.5s ease-out;
+            animation: slideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
         }
 
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(-30px);
+                transform: translateY(-50px) scale(0.9);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
-        .logo {
-            font-size: 48px;
-            margin-bottom: 10px;
+        .header {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            padding: 35px 30px 25px;
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 {
-            color: #FF6B35;
-            font-size: 28px;
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .logo {
+            font-size: 70px;
             margin-bottom: 10px;
+            animation: bounce 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            color: rgba(255,255,255,0.95);
+            font-size: 15px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 35px 30px;
         }
 
         .welcome {
             color: #333;
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 25px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        .discount-badge {
+        .welcome-name {
+            color: #FF6B35;
+            font-weight: 700;
+        }
+
+        .discount-showcase {
             background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+        }
+
+        .discount-showcase::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .discount-number {
             color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 32px;
-            font-weight: bold;
-            display: inline-block;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(255,107,53,0.4);
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .discount-text {
+            color: rgba(255,255,255,0.95);
+            font-size: 16px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
 
         .conditions {
-            background: #FFF8E1;
-            padding: 15px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #FFA500;
-        }
-
-        .conditions p {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .instructions {
-            color: #333;
-            font-size: 16px;
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFE082 100%);
+            padding: 20px;
+            border-radius: 15px;
             margin: 25px 0;
-            line-height: 1.8;
+            border-left: 5px solid #FFA500;
+            text-align: left;
+        }
+
+        .conditions-title {
+            color: #F57C00;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .condition-item {
+            color: #555;
+            font-size: 14px;
+            margin: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.5;
+        }
+
+        .check-icon {
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .steps {
+            margin: 30px 0;
+        }
+
+        .steps-title {
+            color: #333;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(255,107,53,0.3);
+        }
+
+        .step-text {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.4;
         }
 
         .social-buttons {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin: 30px 0;
+            gap: 12px;
+            margin: 25px 0;
         }
 
         .social-btn {
@@ -106,18 +274,37 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 18px;
-            border-radius: 12px;
+            padding: 16px 24px;
+            border-radius: 15px;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-size: 17px;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
         }
 
-        .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .social-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .social-btn:active {
+            transform: scale(0.95);
         }
 
         .instagram {
@@ -131,84 +318,81 @@
         }
 
         .icon {
-            font-size: 24px;
+            font-size: 26px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .confirm-section {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px dashed #e0e0e0;
         }
 
         .confirm-btn {
             background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             border: none;
-            padding: 20px 40px;
+            padding: 18px 35px;
             border-radius: 50px;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
             width: 100%;
-            margin-top: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(76,175,80,0.4);
+            box-shadow: 0 8px 20px rgba(76,175,80,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .confirm-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .confirm-btn:hover::before {
+            left: 100%;
         }
 
         .confirm-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(76,175,80,0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(76,175,80,0.5);
+        }
+
+        .confirm-btn:active {
+            transform: translateY(-1px);
         }
 
         .confirm-btn:disabled {
-            background: #ccc;
+            background: linear-gradient(135deg, #ccc 0%, #999 100%);
             cursor: not-allowed;
             transform: none;
-        }
-
-        .success-message {
-            display: none;
-            background: #E8F5E9;
-            border: 2px solid #4CAF50;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .success-message h3 {
-            color: #4CAF50;
-            margin-bottom: 10px;
-        }
-
-        .success-message p {
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #f0f0f0;
-            color: #999;
-            font-size: 12px;
+            box-shadow: none;
         }
 
         .loading {
             display: none;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #FF6B35;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #FF6B35;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
             margin: 0 auto;
         }
 
@@ -216,125 +400,354 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .loading-text {
+            color: #666;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border: 3px solid #4CAF50;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 25px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes successPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        .success-message h3 {
+            color: #2E7D32;
+            font-size: 24px;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .success-message p {
+            color: #333;
+            line-height: 1.7;
+            font-size: 15px;
+            margin: 8px 0;
+        }
+
+        .success-highlight {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #2E7D32;
+        }
+
+        .footer {
+            background: #f8f8f8;
+            padding: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .footer-brand {
+            font-weight: 600;
+            color: #FF6B35;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 { font-size: 28px; }
+            .discount-number { font-size: 48px; }
+            .welcome { font-size: 18px; }
+        }
+
+        /* Confetti effect */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #FF6B35;
+            position: absolute;
+            animation: confetti-fall 3s linear;
+            opacity: 0;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
+    <!-- Burbujas de fondo -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
     <div class="container">
-        <div class="logo"><img src="LOGOTIPO.png" alt="Logo Ole Bunuelo" width="280" height="130"></img>
-</div>
-        <h1>Ole Buñuelo</h1>
-        <p class="welcome" id="welcome-msg">¡Hola! Gana tu bono especial</p>
-        
-        <div class="discount-badge">15% OFF</div>
-        
-        <div class="conditions">
-            <p><strong>📋 Condiciones:</strong></p>
-            <p>✓ Válido en compras igual o superiores a $10,000</p>
-            <p>✓ Para tu próxima compra</p>
-            <p>✓ Vence el 5 de noviembre de 2025</p>
+        <div class="header">
+            <div class="logo"><img src="LOGOTIPO.png" alt="Logo Ole Bunuelo" width="280" height="130"></img></div>
+            <h1>Ole Buñuelo</h1>
+            <p class="tagline">Los mejores buñuelos artesanales</p>
         </div>
 
-        <div class="instructions">
-            <strong>🎁 Para obtener tu bono:</strong><br>
-            1️⃣ Síguenos en nuestras redes sociales<br>
-            2️⃣ Haz clic en "Activar mi bono"<br>
-            3️⃣ Recibirás tu código por WhatsApp
-        </div>
+        <div class="content">
+            <p class="welcome">
+                ¡Hola <span class="welcome-name" id="welcome-name">amigo</span>!<br>
+                Tenemos un regalo especial para ti
+            </p>
 
-        <div class="social-buttons">
-            <a href="https://www.instagram.com/olebunuelo" target="_blank" class="social-btn instagram" id="instagram-btn">
-                <span class="icon">📷</span>
-                <span>Seguir en Instagram</span>
-            </a>
-            <a href="https://www.facebook.com/olebunuelo" target="_blank" class="social-btn facebook" id="facebook-btn">
-                <span class="icon">👍</span>
-                <span>Seguir en Facebook</span>
-            </a>
-        </div>
+            <div class="discount-showcase">
+                <div class="discount-number">15% OFF</div>
+                <div class="discount-text">EN TU PRÓXIMA COMPRA</div>
+            </div>
 
-        <button class="confirm-btn" id="confirm-btn" onclick="confirmFollow()">
-            ✨ ¡Ya seguí las redes, activar mi bono!
-        </button>
+            <div class="conditions">
+                <div class="conditions-title">
+                    📋 Términos y condiciones
+                </div>
+                <div class="condition-item">
+                    <span class="check-icon">✓</span>
+                    <span>Válido en compras igual o superiores a <strong>$10,000 COP</strong></span>
+                </div>
+                <div class="condition-item">
+                    <span class="check-icon">✓</span>
+                    <span>Aplica para tu <strong>siguiente compra</strong></span>
+                </div>
+                <div class="condition-item">
+                    <span class="check-icon">✓</span>
+                    <span>Válido hasta el <strong>5 de noviembre de 2025</strong></span>
+                </div>
+                <div class="condition-item">
+                    <span class="check-icon">✓</span>
+                    <span>Un bono por cliente</span>
+                </div>
+            </div>
 
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-        </div>
+            <div class="steps">
+                <div class="steps-title">🎁 Cómo obtener tu bono:</div>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Síguenos en Instagram y Facebook</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Haz clic en "Activar mi bono"</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Recibe tu código por WhatsApp</div>
+                </div>
+            </div>
 
-        <div class="success-message" id="success-msg">
-            <h3>🎉 ¡Bono Activado!</h3>
-            <p>Tu código de descuento será enviado a tu WhatsApp en las próximas horas.</p>
-            <p><strong>¡Gracias por seguirnos! 🍩</strong></p>
+            <div class="social-buttons">
+                <a href="https://www.instagram.com/olebunuelo" target="_blank" class="social-btn instagram" id="instagram-btn">
+                    <span class="icon">📷</span>
+                    <span class="social-text">Seguir en Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/olebunuelo" target="_blank" class="social-btn facebook" id="facebook-btn">
+                    <span class="icon">👍</span>
+                    <span class="social-text">Seguir en Facebook</span>
+                </a>
+            </div>
+
+            <div class="confirm-section">
+                <button class="confirm-btn" id="confirm-btn" onclick="confirmFollow()">
+                    ✨ ¡Ya seguí las redes, activar mi bono!
+                </button>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p class="loading-text">Activando tu bono...</p>
+                </div>
+
+                <div class="success-message" id="success-msg">
+                    <div class="success-icon">🎉</div>
+                    <h3>¡Bono Activado Exitosamente!</h3>
+                    <p>Tu código de descuento del <strong>20% OFF</strong> será enviado a tu WhatsApp en los próximos minutos.</p>
+                    <div class="success-highlight">
+                        📱 Revisa tu WhatsApp en breve
+                    </div>
+                    <p style="margin-top: 15px;">¡Gracias por ser parte de la familia Ole Buñuelo! 🍩❤️</p>
+                </div>
+            </div>
         </div>
 
         <div class="footer">
-            Ole Buñuelo - Los mejores buñuelos artesanales
+            <div class="footer-brand">Ole Buñuelo</div>
+            <div>Tradición y sabor en cada bocado</div>
         </div>
     </div>
 
     <script>
+        // ============================================
+        // CONFIGURACIÓN - CAMBIA ESTOS VALORES
+        // ============================================
+        const CONFIG = {
+            // URL de tu webhook de n8n
+            n8nWebhookUrl: 'https://n8n.digitalclick.lat/webhook-test/bono-confirmado',
+            
+            // URLs de tus redes sociales
+            instagramUrl: 'https://www.instagram.com/olebunuelo',
+            facebookUrl: 'https://www.facebook.com/olebunuelo'
+        };
+
+        // ============================================
+        // LÓGICA DE LA APLICACIÓN
+        // ============================================
+        
         // Obtener parámetros de la URL
         const urlParams = new URLSearchParams(window.location.search);
-        const clientId = urlParams.get('id');
-        const clientName = urlParams.get('nombre');
+        const clientId = urlParams.get('id') || urlParams.get('phone');
+        const clientName = urlParams.get('nombre') || urlParams.get('name');
+        const clientPhone = urlParams.get('phone') || urlParams.get('whatsapp');
 
-        // Personalizar saludo si hay nombre
+        // Personalizar saludo
         if (clientName) {
-            document.getElementById('welcome-msg').textContent = `¡Hola ${decodeURIComponent(clientName)}! Gana tu bono especial`;
+            const decodedName = decodeURIComponent(clientName);
+            const firstName = decodedName.split(' ')[0];
+            document.getElementById('welcome-name').textContent = firstName;
         }
 
-        // IMPORTANTE: Reemplaza esta URL con tu webhook de n8n
-        const N8N_WEBHOOK_URL = 'https://n8n.digitalclick.lat/webhook-test/bono-confirmado';
+        // Actualizar URLs de redes sociales
+        document.getElementById('instagram-btn').href = CONFIG.instagramUrl;
+        document.getElementById('facebook-btn').href = CONFIG.facebookUrl;
 
+        // Tracking de clicks en redes sociales
+        let clickedInstagram = false;
+        let clickedFacebook = false;
+
+        document.getElementById('instagram-btn').addEventListener('click', function() {
+            clickedInstagram = true;
+            console.log('✓ Click en Instagram');
+            trackSocialClick('instagram');
+        });
+
+        document.getElementById('facebook-btn').addEventListener('click', function() {
+            clickedFacebook = true;
+            console.log('✓ Click en Facebook');
+            trackSocialClick('facebook');
+        });
+
+        // Función para trackear clicks (opcional)
+        async function trackSocialClick(platform) {
+            try {
+                await fetch(CONFIG.n8nWebhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        event: 'social_click',
+                        platform: platform,
+                        clientId: clientId,
+                        clientName: clientName,
+                        clientPhone: clientPhone,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+            } catch (error) {
+                console.log('Track error:', error);
+            }
+        }
+
+        // Función principal de confirmación
         async function confirmFollow() {
             const btn = document.getElementById('confirm-btn');
             const loading = document.getElementById('loading');
             const successMsg = document.getElementById('success-msg');
 
-            // Deshabilitar botón
+            // Validar que haya ID de cliente
+            if (!clientId && !clientPhone) {
+                alert('❌ Error: No se pudo identificar tu número. Por favor contacta con nosotros.');
+                return;
+            }
+
+            // Deshabilitar botón y mostrar loading
             btn.disabled = true;
             loading.style.display = 'block';
 
             try {
                 // Enviar confirmación a n8n
-                const response = await fetch(N8N_WEBHOOK_URL, {
+                const response = await fetch(CONFIG.n8nWebhookUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
+                        event: 'bono_confirmado',
                         clientId: clientId,
                         clientName: clientName,
+                        clientPhone: clientPhone,
+                        clickedInstagram: clickedInstagram,
+                        clickedFacebook: clickedFacebook,
                         timestamp: new Date().toISOString(),
-                        action: 'bono_confirmado'
+                        userAgent: navigator.userAgent,
+                        referrer: document.referrer
                     })
                 });
 
                 if (response.ok) {
-                    // Mostrar mensaje de éxito
+                    // Éxito - mostrar mensaje
                     loading.style.display = 'none';
                     successMsg.classList.add('show');
                     btn.style.display = 'none';
+                    
+                    // Efecto de confetti
+                    createConfetti();
+                    
+                    console.log('✅ Bono activado exitosamente');
                 } else {
-                    throw new Error('Error en la confirmación');
+                    throw new Error('Error en la respuesta del servidor');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Hubo un error. Por favor intenta de nuevo o contáctanos por WhatsApp.');
-                btn.disabled = false;
+                console.error('❌ Error:', error);
                 loading.style.display = 'none';
+                btn.disabled = false;
+                
+                alert('⚠️ Hubo un problema al activar tu bono.\n\nPor favor intenta nuevamente o contáctanos directamente por WhatsApp.\n\n¡Queremos que recibas tu descuento!');
             }
         }
 
-        // Tracking de clicks en redes sociales (opcional)
-        document.getElementById('instagram-btn').addEventListener('click', function() {
-            console.log('Click en Instagram');
-            // Aquí puedes enviar un evento a n8n si quieres trackear
-        });
+        // Efecto de confetti
+        function createConfetti() {
+            const colors = ['#FF6B35', '#F7931E', '#4CAF50', '#FFD700', '#FF1744'];
+            const confettiCount = 50;
 
-        document.getElementById('facebook-btn').addEventListener('click', function() {
-            console.log('Click en Facebook');
-            // Aquí puedes enviar un evento a n8n si quieres trackear
-        });
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Log para debugging
+        console.log('🍩 Ole Buñuelo - Sistema de Bonos Cargado');
+        console.log('Client ID:', clientId);
+        console.log('Client Name:', clientName);
+        console.log('Client Phone:', clientPhone);
     </script>
 </body>
 </html>
